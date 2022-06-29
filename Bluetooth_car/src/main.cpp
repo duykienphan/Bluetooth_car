@@ -7,6 +7,13 @@ byte led = 13;
 byte M1 = 4, M2 = 5, M3 = 6, M4 = 7;
 char value;
 
+void motor(byte status1, byte status2, byte status3, byte status4){
+  digitalWrite(M1, status1);
+  digitalWrite(M2, status2);
+  digitalWrite(M3, status3);
+  digitalWrite(M4, status4);
+}
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
@@ -27,37 +34,22 @@ void loop() {
   }
 
   if(value == 'F'){            //move forward(all motors rotate in forward direction)
-    digitalWrite(M1, HIGH);
-    digitalWrite(M3, HIGH);
-    digitalWrite(M2, LOW);
-    digitalWrite(M4, LOW);
+    motor(1, 0, 1, 0);
   }
   
   else if(value == 'B'){      //move reverse (all motors rotate in reverse direction)
-    digitalWrite(M2,HIGH);
-    digitalWrite(M4,HIGH);
-    digitalWrite(M1, LOW);
-    digitalWrite(M3, LOW);
+    motor(0, 1, 0, 1);
   }
   
   else if(value == 'L'){      //turn right (left side motors rotate in forward direction, right side motors doesn't rotate)
-    digitalWrite(M3, HIGH);
-    digitalWrite(M2, LOW);
-    digitalWrite(M4, LOW);
-    digitalWrite(M1, LOW);
+    motor(0, 0, 1, 0);
   }
   
   else if(value == 'R'){      //turn left (right side motors rotate in forward direction, left side motors doesn't rotate)
-    digitalWrite(M1, HIGH);
-    digitalWrite(M3, LOW);
-    digitalWrite(M2, LOW);
-    digitalWrite(M4, LOW);
+    motor(1, 0, 0, 0);
   }
   
   else if(value == 'S'){      //STOP (all motors stop)
-    digitalWrite(M1,LOW);
-    digitalWrite(M2,LOW);
-    digitalWrite(M3,LOW);
-    digitalWrite(M4,LOW);
+    motor(0, 0, 0, 0);
   }
 }
