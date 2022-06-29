@@ -33,22 +33,38 @@ void loop() {
     Serial.println(value);
   }
 
-  if(value == 'F'){            //move forward(all motors rotate in forward direction)
-    motor(1, 0, 1, 0);
-  }
-  
-  else if(value == 'B'){      //move reverse (all motors rotate in reverse direction)
+  if(value == 'F'){            //forward
     motor(0, 1, 0, 1);
   }
   
-  else if(value == 'L'){      //turn right (left side motors rotate in forward direction, right side motors doesn't rotate)
-    motor(0, 0, 1, 0);
+  else if(value == 'B'){      //Back
+    motor(1, 0, 1, 0);
   }
   
-  else if(value == 'R'){      //turn left (right side motors rotate in forward direction, left side motors doesn't rotate)
+  else if(value == 'L'){      //Left
+    motor(0, 1, 1, 0);
+  }
+
+  else if(value == 'R'){      //Right
+    motor(1, 0, 0, 1);
+  }
+  
+  else if(value == 'J'){      //Back Right
+    motor(0, 0, 1, 0);
+  }
+
+  else if(value == 'H'){      //Back Left
     motor(1, 0, 0, 0);
   }
   
+  else if(value == 'I'){      //Forward Right
+    motor(0, 0, 0, 1);
+  }
+  
+  else if(value == 'G'){      //Forward Left
+    motor(0, 1, 0, 0);
+  }
+
   else if(value == 'S'){      //STOP (all motors stop)
     motor(0, 0, 0, 0);
   }
